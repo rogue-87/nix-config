@@ -95,6 +95,7 @@
       discord
       librewolf
       youtube-music
+      gh
     ];
   };
 
