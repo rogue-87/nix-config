@@ -1,11 +1,13 @@
+{ pkgs, ... }:
 {
-  config,
-  pkgs,
-  inputs,
-  ...
-}:
-{
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./../../modules/sys/nvidia.nix
+    ./../../modules/sys/steam.nix
+  ];
+
+  # modules
+  steam.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -16,10 +18,8 @@
     "flakes"
   ];
 
-  # Set your time zone.
   time.timeZone = "Africa/Tripoli";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -41,85 +41,10 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [
-      # general stuff
-      discord
-      youtube-music
-			syncthing
-			syncthingtray-minimal
-			# heroic
-			home-manager
-
-      fish # fav shell
-      neovim # fav code editor
-      neovide # neovim gui frontend
-      tree-sitter
-
-      # langs
-      lua
-      nodejs # lame js runtime
-      deno # superior js runtime
-      python3
-      jdk
-      clang
-      rustup
-      taplo
-
-      # language servers
-      nixd # for nix
-
-      bash-language-server
-      fish-lsp
-
-      lua-language-server
-      pyright
-      jdt-language-server
-
-      svelte-language-server
-      vscode-langservers-extracted # html, css, json, markdown?
-
-      # for taking notes
-      marksman
-      tinymist
-
-      # formatters
-      prettierd
-      nixfmt-rfc-style
-      ruff
-      shfmt
-      stylua
-
-      # linters
-      selene
-
-      # package managers
-      luarocks
-
-      # cli/tui tools
-      btop
-      gh
-      gitoxide
-      zoxide
-      just
-      lazygit
-      stow
-      zellij
-      docker
-
-      # terminal emulators
-      kitty
-      rio
-
-      # fonts
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.symbols-only
-    ];
   };
 
   nixpkgs.config.allowUnfree = true;
-
   environment.systemPackages = with pkgs; [
-    kdePackages.kate
     kdePackages.plasma-browser-integration
     chromium
     git
@@ -131,11 +56,16 @@
     tree
     wget
     wl-clipboard
+    vlc
+    haruna
+    htop
+    bat
+    # to manager dotfiles
+    home-manager
   ];
 
   # **services**
-  # services.openssh.enable = true;
-
+  services.openssh.enable = true;
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -147,9 +77,7 @@
     jack.enable = false;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
+  services.libinput.enable = true;
   services.xserver.enable = false;
 
   # Enable the KDE Plasma Desktop Environment.
@@ -162,7 +90,6 @@
     variant = "";
   };
 
-  # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # **hardware**
@@ -175,7 +102,7 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "den"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -191,23 +118,6 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-  };
-
-  # the green devil that is nvidia
-  hardware.graphics = {
-    enable = true;
-  };
-
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = true;
-    nvidiaSettings = true;
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   # WARN: read "man configuration.nix" or "https://nixos.org/nixos/options.html"  before changing

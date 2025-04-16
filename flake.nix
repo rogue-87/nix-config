@@ -35,18 +35,15 @@
         laptop = sys-config {
           inherit system;
           specialArgs = { inherit inputs system; };
-          modules = [
-            ./hosts/laptop/configuration.nix
-          ];
+          modules = [ ./system/laptop/configuration.nix ];
         };
       };
 
       homeConfigurations = {
         rogue = home-config {
           inherit pkgs;
-          modules = [
-            # ./hosts/laptop/home.nix
-          ];
+          extraSpecialArgs = { inherit inputs system; };
+          modules = [ ./home/rogue.nix ];
         };
       };
     };
