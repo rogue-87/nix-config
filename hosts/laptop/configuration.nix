@@ -48,6 +48,7 @@
 			syncthing
 			syncthingtray-minimal
 			# heroic
+			home-manager
 
       fish # fav shell
       neovim # fav code editor
