@@ -10,29 +10,39 @@
   };
 
   config = lib.mkIf config.editor.enable {
-    home.packages = with pkgs; [
-      btop
-      lazygit
-
-      nixd
-      nixfmt-rfc-style
-
-      lua
-      lua-language-server
-      luarocks
-      tree-sitter
-      selene
-      stylua
-      # language servers for taking notes
-      marksman
-      tinymist
-    ];
-
     # fav code editor
     programs.neovim = {
       enable = true;
       viAlias = true;
       vimAlias = true;
+      extraLuaPackages = ps: [ ps.magick ];
+      extraPackages = with pkgs; [
+        # nix stuff
+        nixd
+        nixfmt-rfc-style
+        # lua stuff
+        luajit
+        lua-language-server
+        luarocks
+        tree-sitter
+        selene
+        stylua
+        # other stuff(shell scripting, note taking, etc...)
+        tinymist
+        marksman
+        prettierd
+        bash-language-server
+        shfmt
+        fish-lsp
+        # stuff that nvim plugins may use
+        btop
+        lazygit
+        fd
+        ripgrep
+        imagemagick # needed for image.nvim
+      ];
+      withNodeJs = true;
+      withPython3 = true;
     };
 
     # gui fronted for my fav code editor
@@ -44,7 +54,6 @@
         idle = true;
         maximized = true;
         mouse-cursor-icon = "arrow";
-        # neovim-bin = "/usr/bin/nvim";
         no-multigrid = false;
         srgb = false;
         tabs = false;
@@ -57,6 +66,7 @@
           normal = [ "JetBrainsMono Nerd Font" ];
           size = 14.0;
         };
+
         box-drawing = {
           mode = "font-glyph";
         };
@@ -68,8 +78,14 @@
       VISUAL = "nvim";
     };
 
-    home.file = {
-      ".config/nvim".source = ./../../../dotfiles/nvim;
+    home.file.".config/nvim" = {
+      # you might be asking... WHY?
+      # well it's because of lazy.nvim lazy-lock.json file
+      # also I don't want to run "home-manager switch" every single time I change something in my nvim config
+      # this pretty much tells home-manager not to put the symlink in the store
+      # just symlink it directly to the nvim config located in dotfiles/ within this nix-config
+      # however do keep in mind there are several symlinks standing between this config and the symlink in ~/.config/nvim
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-config/dotfiles/profiles/laptop/nvim/.config/nvim";
     };
   };
 }

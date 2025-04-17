@@ -1,12 +1,14 @@
 { lib, ... }:
 {
   imports = [
-    ./git.nix
     ./editor.nix
+    ./git.nix
+    ./terminal.nix
     ./tools.nix
   ];
 
-  git.enable = lib.mkDefault true;
   editor.enable = lib.mkDefault true;
+  git.enable = lib.mkDefault true;
+  terminal.enable = lib.mkDefault true;
   tools.enable = lib.mkDefault false;
 }

@@ -10,29 +10,30 @@
   };
   config = lib.mkIf config.tools.enable {
     home.packages = with pkgs; [
-      # langs
-      clang
       deno # superior js runtime
-      jdk
-      nodejs # lame js runtime
-      python3
       rustup
-      # language servers
-      bash-language-server
-      fish-lsp
-      pyright
-      jdt-language-server
-      vscode-langservers-extracted
       taplo
-      # formatters
-      prettierd
-      ruff
-      shfmt
-      # whatever manager for whatever lang
-      uv
       # cli/tui tools
       docker
       just
+      lazygit
+      btop
+      # stuff that should be managed by shell.nix or flake.nix
+      # in a local project
+      /*
+        clang
+        jdk
+        nodejs # lame js runtime
+        python3
+        # language servers
+        pyright
+        jdt-language-server
+        vscode-langservers-extracted
+        # formatters
+        ruff
+        # other
+        uv
+      */
     ];
   };
 }
