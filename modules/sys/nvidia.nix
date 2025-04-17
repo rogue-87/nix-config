@@ -1,9 +1,7 @@
 { config, ... }:
 {
   # the green devil that is nvidia
-  hardware.graphics = {
-    enable = true;
-  };
+  hardware.graphics.enable = true;
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -16,4 +14,5 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+  nixpkgs.config.nvidia.acceptLicense = true;
 }

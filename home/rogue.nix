@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./../modules/home/dev/default.nix
+    ./../modules/home/dev
     ./../modules/home/games.nix
   ];
 
@@ -19,9 +19,7 @@
 
   home.packages = with pkgs; [
     discord
-    ytui-music
     youtube-music
-    zellij
     # fonts
     # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
     nerd-fonts.jetbrains-mono
@@ -72,6 +70,11 @@
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
+  };
+
+  xdg = {
+    enable = true;
+    userDirs.enable = true;
   };
 
   # Let Home Manager install and manage itself.

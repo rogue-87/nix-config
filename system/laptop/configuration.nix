@@ -45,7 +45,6 @@
 
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    kdePackages.plasma-browser-integration
     chromium
     git
     fd
@@ -64,6 +63,44 @@
     home-manager
   ];
 
+  programs.firefox = {
+    enable = true;
+    package = pkgs.librewolf;
+    policies = {
+      DisableTelemetry = true;
+      DisableFirefoxStudies = true;
+      Preferences = {
+        "cookiebanners.service.mode" = 2; # Block cookie banners
+        "cookiebanners.service.mode.privateBrowsing" = 2; # Block cookie banners in private browsing
+        "network.cookie.lifetimePolicy" = 0;
+        "privacy.clearOnShutdown.cookies" = false;
+        "privacy.clearOnShutdown.history" = false;
+        "privacy.donottrackheader.enabled" = true;
+        "privacy.fingerprintingProtection" = true;
+        "privacy.resistFingerprinting" = true;
+        "privacy.trackingprotection.emailtracking.enabled" = true;
+        "privacy.trackingprotection.enabled" = true;
+        "privacy.trackingprotection.fingerprinting.enabled" = true;
+        "privacy.trackingprotection.socialtracking.enabled" = true;
+        "webgl.disabled" = false;
+      };
+      ExtensionSettings = {
+        "uBlock0@raymondhill.net" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          installation_mode = "force_installed";
+        };
+      };
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "kde6";
+    style = "breeze";
+  };
+
+  programs.dconf.enable = true;
+
   # **services**
   services.openssh.enable = true;
   services.pulseaudio.enable = false;
@@ -78,8 +115,8 @@
   };
 
   services.libinput.enable = true;
-  services.xserver.enable = false;
 
+  services.xserver.enable = false;
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
