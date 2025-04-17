@@ -1,4 +1,0 @@
-std="luajit"
-
-[lints]
-mixed_table="allow"
