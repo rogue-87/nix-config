@@ -2,15 +2,8 @@
 {
   imports = [
     ./../modules/home/dev
-    ./../modules/home/games.nix
+    ./../modules/home/gui
   ];
-
-  # modules
-  editor.enable = true;
-  git.enable = true;
-  terminal.enable = true;
-  tools.enable = true;
-  games.enable = true;
 
   home.username = "rogue";
   home.homeDirectory = "/home/rogue";
@@ -19,8 +12,6 @@
   };
 
   home.packages = with pkgs; [
-    discord
-    youtube-music
     syncthing
     # fonts
     # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })

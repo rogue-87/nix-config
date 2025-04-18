@@ -18,6 +18,7 @@
       just
       lazygit
       btop
+      direnv
       # stuff that should be managed by shell.nix or flake.nix
       # in a local project
       /*

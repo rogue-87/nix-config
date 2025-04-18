@@ -31,13 +31,14 @@
         bold_italic_font = "auto";
         font_size = "14";
         # tab
-        tab_title_max_length = 10;
         tab_bar_edge = "bottom";
         tab_bar_margin_height = 0;
         tab_bar_margin_width = 0;
         tab_bar_min_tabs = 2;
         tab_bar_style = "separator";
         tab_separator = "\"   ┇   \"";
+        tab_title_max_length = 10;
+				tab_switch_strategy = "previous";
         # window
         draw_minimal_borders = "yes";
         placement_strategy = "center";

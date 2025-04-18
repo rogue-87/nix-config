@@ -10,5 +10,5 @@
   editor.enable = lib.mkDefault true;
   git.enable = lib.mkDefault true;
   terminal.enable = lib.mkDefault true;
-  tools.enable = lib.mkDefault false;
+  tools.enable = lib.mkDefault true;
 }
