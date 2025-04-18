@@ -2,11 +2,13 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./../../modules/sys/nvidia.nix
-    ./../../modules/sys/steam.nix
+    ./../../modules/sys/hardware/nvidia.nix
+    ./../../modules/sys
   ];
 
   # modules
+  nvidia.enable = true;
+  docker.enable = true;
   steam.enable = true;
 
   # Bootloader.
@@ -45,20 +47,22 @@
 
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    chromium
-    git
+    bat
     fd
     gcc
-    librewolf
+    git
+    htop
     ripgrep
     speedtest-rs
     tree
+    vlc
     wget
     wl-clipboard
-    vlc
+    vim
+    chromium
+    librewolf
     haruna
-    htop
-    bat
+    pciutils
     # to manager dotfiles
     home-manager
   ];

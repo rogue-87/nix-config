@@ -29,6 +29,7 @@
         stylua
         # other stuff(shell scripting, note taking, etc...)
         tinymist
+        typst
         marksman
         prettierd
         bash-language-server
