@@ -14,6 +14,8 @@
       pcsx2
       rpcs3
       r2modman
+      mangohud
+      gamemode
     ];
   };
 }

@@ -38,7 +38,7 @@
         tab_bar_style = "separator";
         tab_separator = "\"   ┇   \"";
         tab_title_max_length = 10;
-				tab_switch_strategy = "previous";
+        tab_switch_strategy = "previous";
         # window
         draw_minimal_borders = "yes";
         placement_strategy = "center";
@@ -50,6 +50,8 @@
       };
       themeFile = "GitHub_Dark";
     };
+
+    programs.lf.enable = true;
 
     programs.zoxide = {
       enable = true;
