@@ -2,19 +2,20 @@
 {
   environment.systemPackages = with pkgs; [
     # cli
+    gcc
     bat
     fd
     git
     htop
+    openssl
     pciutils
+    pkg-config
     ripgrep
     speedtest-rs
     tree
     vim
     wget
     wl-clipboard
-    pkg-config
-    openssl
     # gui
     chromium
     haruna
