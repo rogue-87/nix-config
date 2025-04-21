@@ -8,12 +8,18 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     inputs@{
       self,
       nixpkgs,
+      rust-overlay,
       home-manager,
       ...
     }:
@@ -35,14 +41,16 @@
         laptop = sys-config {
           inherit system;
           specialArgs = { inherit inputs system; };
-          modules = [ ./system/laptop/configuration.nix ];
+          modules = [
+            ./system/laptop/configuration.nix
+          ];
         };
       };
 
       homeConfigurations = {
         rogue = home-config {
           inherit pkgs;
-          extraSpecialArgs = { inherit inputs system; };
+          extraSpecialArgs = { inherit inputs system rust-overlay; };
           modules = [ ./home/rogue.nix ];
         };
       };

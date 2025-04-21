@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  rust-overlay,
   ...
 }:
 {
@@ -9,17 +10,16 @@
     tools.enable = lib.mkEnableOption "installs some dev stuff";
   };
   config = lib.mkIf config.tools.enable {
+
+    nixpkgs.overlays = [ rust-overlay.overlays.default ];
     home.packages = with pkgs; [
       # stuff that I like to have available just in case
       lua # fav scripting language
       deno # superior js runtime
-      # global rust toolchain
-      cargo
+      # global rust toolchain cuz of my unreliable internet :D
+      rust-bin.stable.latest.default
       cargo-binstall
-      clippy
       rust-analyzer
-      rustc
-      rustfmt
       taplo
       # cli/tui tools
       just

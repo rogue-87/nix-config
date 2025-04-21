@@ -13,6 +13,8 @@
     vim
     wget
     wl-clipboard
+    pkg-config
+    openssl
     # gui
     chromium
     haruna
