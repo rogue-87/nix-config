@@ -55,8 +55,6 @@
     };
   };
 
-  programs.appimage.binfmt = true;
-
   programs.dconf.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -66,4 +64,6 @@
     enable = true;
     enableSSHSupport = true;
   };
+
+  programs.appimage.enable = true;
 }
