@@ -65,8 +65,11 @@
     enableSSHSupport = true;
   };
 
-  programs.appimage = {
-    enable = true;
-    binfmt = true;
-  };
+  # doesn't work :/
+  /*
+    programs.appimage = {
+      enable = true;
+      binfmt = true;
+    };
+  */
 }
