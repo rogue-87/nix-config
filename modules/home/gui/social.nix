@@ -11,6 +11,7 @@
   config = lib.mkIf config.social.enable {
     home.packages = with pkgs; [
       discord
+      vesktop
       telegram-desktop
       # element-desktop
     ];

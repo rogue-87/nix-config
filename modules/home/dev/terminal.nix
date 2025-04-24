@@ -48,6 +48,10 @@
         window_margin_width = 0;
         window_padding_width = 0;
       };
+      extraConfig = "
+      map ctrl+shift+enter new_window_with_cwd
+      map ctrl+shift+t new_tab_with_cwd
+      ";
       themeFile = "GitHub_Dark";
     };
 

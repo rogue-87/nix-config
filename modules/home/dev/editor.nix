@@ -21,10 +21,9 @@
         nixd
         nixfmt-rfc-style
         # lua stuff
-        luajit
         lua-language-server
+        luajit
         luarocks
-        tree-sitter
         selene
         stylua
         # other stuff(shell scripting, note taking, etc...)
@@ -36,11 +35,11 @@
         shfmt
         fish-lsp
         # stuff that nvim plugins may use
+        tree-sitter
         btop
         lazygit
         fd
         ripgrep
-        imagemagick # needed for image.nvim
       ];
       withNodeJs = true;
       withPython3 = true;
