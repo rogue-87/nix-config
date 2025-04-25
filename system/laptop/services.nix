@@ -1,6 +1,5 @@
 { ... }:
 {
-  services.flatpak.enable = true;
   services.openssh.enable = true;
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
