@@ -83,9 +83,9 @@
       # well it's because of lazy.nvim lazy-lock.json file
       # also I don't want to run "home-manager switch" every single time I change something in my nvim config
       # this pretty much tells home-manager not to put the symlink in the store
-      # just symlink it directly to the nvim config located in dotfiles/ within this nix-config
+      # just symlink it directly to the nvim config located in dotfiles/ somewhere in home dir
       # however do keep in mind there are several symlinks standing between this config and the symlink in ~/.config/nvim
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-config/dotfiles/profiles/laptop/nvim/.config/nvim";
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/profiles/laptop/nvim/.config/nvim";
     };
   };
 }
